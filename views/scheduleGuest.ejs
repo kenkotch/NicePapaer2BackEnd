@@ -1,11 +1,11 @@
 <h4 class="text-center"><%= title %></h4>
 
-<% if (typeof wedDate == 'object' && wedDate) { %>
-  <h2><%= wedDate %></h2>
-<% } %>
-
 <!-- schedule -->
 <div  class="center-content">
+
+  <% if (wedDate) { %>
+    <h3><%= wedDate %></h3>
+  <% } %>
 
   <table id="schedule">
     <tr>
