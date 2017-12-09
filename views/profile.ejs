@@ -1,0 +1,57 @@
+<div class="container">
+<% if(typeof guest_profile == 'object' && guest_profile) { %>
+<div id="renderNewGuest">Congratulations, your guest username is : <b><%= guest_profile[0].username %></b>.  Please share this and your created password with your guests so they can see your schedule!</div>
+<% } %>
+
+<!-- profile -->
+  <div>
+    <div class="row">
+      <p>Username:</p> <%= data.username %>
+      <br><br>
+    </div>
+    <div class="row">
+      <p>email:</p> <%= data.email %>
+      <br><br>
+    </div>
+    <div class="row">
+      <p>First Name 1:</p> <%= data.first_name_1 %>
+      <br><br>
+    </div>
+    <div class="row">
+      <p>Last Name 1:</p> <%= data.last_name_1 %>
+      <br><br>
+    </div>
+    <div class="row">
+      <p>First Name 2:</p> <%= data.first_name_2 %>
+      <br><br>
+    </div>
+    <div class="row">
+      <p>Last Name 2:</p> <%= data.last_name_2 %>
+      <br><br>
+    </div>
+    <div class="row">
+      <p>Wedding Date:</p> <%= data.wedding_date.toString().slice(0, 15) %>
+    </div>
+      <br>
+      <br>
+      <a href="/profile/<%= data.id %>/editprofile"><button class="edit btn-info" type="button" name="button" id="<%= data.id %>">Edit My Profile</button></a>
+
+      <br>
+      <br>
+      <br>
+      <br>
+
+<h5>Create your guest username and password here:</h5>
+
+    <form id="newGuest" action="/profile" method="post">
+      <label for="username">Guest Username:</label>
+      <input type="text" id="username" name="username" placeholder="guests username" required>
+      <br>
+      <label for="guest_password">Guest Password:</label>
+      <input type="text" minlength="8" maxlength="19" id="password" name="password" placeholder="guest password" required>
+      <br>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>

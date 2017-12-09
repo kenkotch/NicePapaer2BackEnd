@@ -1,0 +1,28 @@
+<h4 class="text-center"><%= title %></h4>
+
+<% if (typeof wedDate == 'object' && wedDate) { %>
+  <h2><%= wedDate %></h2>
+<% } %>
+
+<!-- schedule -->
+<div  class="center-content">
+
+  <table id="schedule">
+    <tr>
+      <th>time</th>
+      <th>event</th>
+      <th>description</th>
+    </tr>
+
+    <% for (let i = 0; i < data.length; i++) { %>
+      <% if(data[i].time !== 'hide') { %>
+      <tr>
+        <td><%= data[i].time %></td>
+        <td><%= data[i].item %></td>
+        <td><%= data[i].description %></td>
+      </tr>
+      <% } %>
+    <% } %>
+  </table>
+
+</div>

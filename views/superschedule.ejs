@@ -1,0 +1,40 @@
+<h3 class="text-center"><%= title %></h3>
+
+<table id="superSchedule">
+  <tr class = "text-center">
+    <th class = "col-lg-auto text-center">account.id</th>
+    <th class = "col-lg-auto text-center">email</th>
+    <th class = "col-lg-auto text-center">firstName1</th>
+    <th class = "col-lg-auto text-center">lastName1</th>
+    <th class = "col-lg-auto text-center">firstName2</th>
+    <th class = "col-lg-auto text-center">lastName2</th>
+    <th class = "col-lg-auto text-center">weddingDate</th>
+    <th class = "col-lg-auto text-center">account_id</th>
+    <th class = "col-lg-auto text-center">role</th>
+    <th class = "col-lg-auto text-center">template_id</th>
+    <th class = "col-lg-auto text-center">created_at</th>
+    <th class = "col-lg-auto text-center">updated_at</th>
+  </tr>
+
+  <% for (let i = 0; i < data.length; i++) { %>
+    <tr class = "text-center">
+      <td class = "col-lg-auto text-center"><%= data[i].id %></td>
+      <td class = "col-lg-auto text-center"><%= data[i].email %></td>
+      <td class = "col-lg-auto text-center"><%= data[i].first_name_1 %></td>
+      <td class = "col-lg-auto text-center"><%= data[i].last_name_1 %></td>
+      <td class = "col-lg-auto text-center"><%= data[i].first_name_2 %></td>
+      <td class = "col-lg-auto text-center"><%= data[i].last_name_2 %></td>
+      <td class = "col-lg-auto text-center"><%= data[i].wedding_date %></td>
+      <td class = "col-lg-auto text-center"><%= data[i].account_id %></td>
+      <td class = "col-lg-auto text-center"><%= data[i].role %></td>
+      <td class = "col-lg-auto text-center"><%= data[i].template_id %></td>
+      <td class = "col-lg-auto text-center"><%= data[i].created_at %></td>
+      <td class = "col-lg-auto text-center"><%= data[i].updated_at %></td>
+
+      <td><a href="/schedule/<%= data[i].id %>/edit"><button style="display:none" class="edit" type="button" name="button" id="<%= data[i].id %>">edit</button></a>
+        <button class="delete" type="button" name="button" id="<%= data[i].id %>">delete</button>
+        <a href=""><button style="display:none" class="userSched" type="button" name="button" id="<%= data[i].id %> ">Get this user's schedule</button></a>
+      </td>
+    </tr>
+  <% } %>
+</table>

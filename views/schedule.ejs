@@ -1,0 +1,48 @@
+<h4 class="text-center"><%= title %></h4>
+
+<% if (typeof wedDate == 'object' && wedDate) { %>
+  <h2><%= wedDate %></h2>
+<% } %>
+
+<!-- schedule -->
+<table id="schedule">
+  <tr class ="row">
+    <th class="col-sm-auto col-6 text-center">Time:</th>
+    <th class="col-sm-auto col-6 text-center">Event:</th>
+    <th class="col-sm-auto col-6 text-center">Description:</th>
+    <th class="col-sm-auto col-6 text-center"></th>
+  </tr>
+
+  <% for (let i = 0; i < data.length; i++) { %>
+      <% if(data[i].time !== 'hide') { %>
+    <tr class ="row">
+      <td class="col-sm-auto col-6 text-center"><%= data[i].time %></td>
+      <td class="col-sm-auto col-6 text-center"><%= data[i].item %></td>
+      <td class="col-sm-auto col-6 text-center"><%= data[i].description %></td>
+      <td class="col-sm-auto col-6 text-center">
+        <a href="/schedule/<%= data[i].id %>/edit"><button class="edit" type="button" name="button" id="<%= data[i].id %>">edit</button></a>
+        <button class="delete" type="button" name="button" id="<%= data[i].id %>">delete</button>
+      </td>
+    </tr>
+    <% } %>
+  <% } %>
+</table>
+
+<br><br>
+
+<!-- insert form-->
+<form action="/schedule" method="post">
+  <div>
+    <label for="time">Time</label>
+    <input type="time" name="time" id="time" required>
+    <br>
+    <label for="item">Event</label>
+    <input type="text" name="item" id="item" placeholder="event" required>
+    <br>
+    <label for="description">Description</label>
+    <input type="text" name="description" id="description" placeholder="description">
+    <br>
+  <button type="submit">add event</button>
+</div>
+
+</form>

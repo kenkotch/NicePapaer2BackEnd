@@ -1,0 +1,31 @@
+<h3>Edit profile</h3>
+
+<form id="editProfileForm">
+
+  <input type="hidden" name="id" value="<%= id %>">
+
+  <label for="username">username</label>
+  <input value="<%= data.username %>" type="text" name="username" id="username" placeholder="username" required>
+  <br>
+  <label for="email">email</label>
+  <input value="<%= data.email %>" type="text" name="email" id="email" placeholder="email" required>
+  <br>
+  <label for="first_name_1">first_name_1</label>
+  <input value="<%= data.first_name_1 %>" type="text" name="first_name_1" id="first_name_1" placeholder="first_name_1" required>
+  <br>
+  <label for="last_name_1">last_name_1</label>
+  <input value="<%= data.last_name_1 %>" type="text" name="last_name_1" id="last_name_1" placeholder="last_name_1" required>
+  <br>
+  <label for="first_name_2">first_name_2</label>
+  <input value="<%= data.first_name_2 %>" type="text" name="first_name_2" id="first_name_2" placeholder="first_name_2" required>
+  <br>
+  <label for="last_name_2">last_name_2</label>
+  <input value="<%= data.last_name_2 %>" type="text" name="last_name_2" id="last_name_2" placeholder="last_name_2" required>
+  <br>
+  <label for="wedding_date">Tentative Wedding Date:</label>
+  <input type="date" id="wedding_date" name="wedding_date" placeholder="Please enter your tentative wedding date (this field is optional)">
+  <br>
+
+
+  <button id="editBtn" type="submit">edit profile</button>
+</form>
