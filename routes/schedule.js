@@ -164,109 +164,40 @@ const role2Render = (id, req, res, next) => {
 
 // role 3 render
 const role3Render = (id, req, res, next) => {
-  // if (!req.body.wedding_date) {
-    // knex('account')
-    //   .select('first_name_1', 'first_name_2', 'template.template_name', 'schedule.*', 'wedding_date')
-    //   .where('account.id', id)
-    //   .orderBy('time')
-    //   .innerJoin('schedule', 'schedule.account_id', 'account.id')
-    //   .innerJoin('template', 'template.id', 'account.template_id')
-    //   .then((data) => {
-    //     console.log(data)
-    //     fName1 = data[0].first_name_1
-    //     fName2 = data[0].first_name_2
-    //
-    //     // if (data[0].wedDate) {
-    //     //   wedDate = data[0].wedding_date.toString().slice(0, 15)
-    //     // }
-    //
-    //     // data[0].wedDate ?
-    //     wedDate = data[0].wedding_date.toString().slice(0, 15)
-    //      // : null
-    //
-    //     for (let i = 0; i < data.length; i++) {
-    //       delete data[i].created_at
-    //       delete data[i].updated_at
-    //     }
-    //
-    //     res.render(
-    //       'scheduleGuest', {
-    //         title: `Welcome to ${fName1} and ${fName2}'s wedding!`,
-    //         role,
-    //         data,
-    //         // wedDate,
-    //         // if (wedDate) {
-    //           wedDate,
-    //         // },
-    //
-    //         _layoutFile: 'layout.ejs'
-    //       }
-    //     )
-    knex('account')
-      .select('first_name_1', 'first_name_2', 'wedding_date', 'template.template_name', 'schedule.*')
-      .where('account.id', id)
-      .orderBy('time')
-      .innerJoin('schedule', 'schedule.account_id', 'account.id')
-      .innerJoin('template', 'template.id', 'account.template_id')
-      .then((data) => {
-        // console.log(data)
-        fName1 = data[0].first_name_1
-        fName2 = data[0].first_name_2
+  knex('account')
+    .select('first_name_1', 'first_name_2', 'wedding_date', 'template.template_name', 'schedule.*')
+    .where('account.id', id)
+    .orderBy('time')
+    .innerJoin('schedule', 'schedule.account_id', 'account.id')
+    .innerJoin('template', 'template.id', 'account.template_id')
+    .then((data) => {
+      fName1 = data[0].first_name_1
+      fName2 = data[0].first_name_2
+
+      if (data[0].wedding_date) {
         wedDate = data[0].wedding_date.toString().slice(0, 15)
+      } else {
+        wedDate = null
+      }
 
-        for (let i = 0; i < data.length; i++) {
-          delete data[i].created_at
-          delete data[i].updated_at
+      for (let i = 0; i < data.length; i++) {
+        delete data[i].created_at
+        delete data[i].updated_at
+      }
+
+      res.render(
+        'scheduleGuest', {
+          title: `Welcome to ${fName1} and ${fName2}'s wedding!`,
+          role,
+          data,
+          wedDate,
+          _layoutFile: 'layout.ejs'
         }
-
-        console.log(wedDate)
-        res.render(
-          'scheduleGuest', {
-            title: `Welcome to ${fName1} and ${fName2}'s wedding!`,
-            role,
-            data,
-            wedDate,
-            _layoutFile: 'layout.ejs'
-          }
-        )
-      })
-      .catch((err) => {
-        next(err)
-      })
-  // }
-  // else {
-  //
-  //   knex('account')
-  //     .select('first_name_1', 'first_name_2', 'wedding_date', 'template.template_name', 'schedule.*')
-  //     .where('account.id', id)
-  //     .orderBy('time')
-  //     .innerJoin('schedule', 'schedule.account_id', 'account.id')
-  //     .innerJoin('template', 'template.id', 'account.template_id')
-  //     .then((data) => {
-  //       console.log(data)
-  //       fName1 = data[0].first_name_1
-  //       fName2 = data[0].first_name_2
-  //       wedDate = data[0].wedding_date.toString().slice(0, 15)
-  //
-  //       for (let i = 0; i < data.length; i++) {
-  //         delete data[i].created_at
-  //         delete data[i].updated_at
-  //       }
-  //
-  //     return res.render(
-  //         'scheduleGuest', {
-  //           title: `Welcome to ${fName1} and ${fName2}'s wedding!`,
-  //           role,
-  //           data,
-  //           wedDate,
-  //           _layoutFile: 'layout.ejs'
-  //         }
-  //       )
-  //     })
-  //     .catch((err) => {
-  //       next(err)
-  //     })
-  // }
+      )
+    })
+    .catch((err) => {
+      next(err)
+    })
 }
 
 
