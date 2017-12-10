@@ -52,7 +52,11 @@ router.get('/', auth, checkRole, (req, res, next) => {
       .then((data) => {
         for (let i = 0; i < data.length; i++) {
           delete data[i].hashed_password
-          data[i].wedding_date = data[i].wedding_date.toString().slice(0, 15)
+
+          data[i].wedding_date ?
+            data[i].wedding_date = data[i].wedding_date.toString().slice(0, 15) :
+            null
+
         }
          return res.render(
           'superSchedule', {

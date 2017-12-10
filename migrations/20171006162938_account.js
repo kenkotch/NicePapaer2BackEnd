@@ -30,7 +30,7 @@ exports.up = (knex, Promise) => {
       .defaultTo('')
 
     table.date('wedding_date')
-      // .defaultTo(null)
+      // .defaultTo('')
 
     table.integer('account_id')
       .references('id')

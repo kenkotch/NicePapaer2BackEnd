@@ -64,15 +64,5 @@ $(document).ready(() => {
       document.location = `/schedule/${id}`
     })
   })
-  // $('.userSched').click((e) => {
-  //   console.log('clicked on', e.target.id)
-  //   let data = `id=${e.target.id}`
-  //   console.log(data)
-  //
-  //   $.get('/super', data, null, 'json')
-  //   .then((data) => {
-  //     console.log('data returning from super', data[0])
-  //     $.get('/schedule', data, null, 'json')
-  //   })
-  // })
+  
 })
