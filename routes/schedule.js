@@ -123,36 +123,6 @@ const role1Render = (id, req, res, next) => {
 
 // role 2 render
 const role2Render = (id, req, res, next) => {
-  // if (req.body.wedding_date === '9999-09-09') {
-  //   knex('account')
-  //     .select('first_name_1', 'first_name_2', 'template.template_name', 'schedule.*')
-  //     .where('account.id', id)
-  //     .orderBy('time')
-  //     .innerJoin('schedule', 'schedule.account_id', 'account.id')
-  //     .innerJoin('template', 'template.id', 'account.template_id')
-  //     .then((data) => {
-  //       console.log(data)
-  //       fName1 = data[0].first_name_1
-  //       fName2 = data[0].first_name_2
-  //
-  //       for (let i = 0; i < data.length; i++) {
-  //         delete data[i].created_at
-  //         delete data[i].updated_at
-  //       }
-  //
-  //       res.render(
-  //         'schedule', {
-  //           title: `Welcome to ${fName1} and ${fName2}'s wedding!`,
-  //           role,
-  //           data,
-  //           _layoutFile: 'layout.ejs'
-  //         }
-  //       )
-  //     })
-  //     .catch((err) => {
-  //       next(err)
-  //     })
-  // } else {
     knex('account')
       .select('first_name_1', 'first_name_2', 'wedding_date', 'template.template_name', 'schedule.*')
       .where('account.id', id)
@@ -160,10 +130,14 @@ const role2Render = (id, req, res, next) => {
       .innerJoin('schedule', 'schedule.account_id', 'account.id')
       .innerJoin('template', 'template.id', 'account.template_id')
       .then((data) => {
-        // console.log(data)
         fName1 = data[0].first_name_1
         fName2 = data[0].first_name_2
-        wedDate = data[0].wedding_date.toString().slice(0, 15)
+
+        if (data[0].wedding_date){
+          wedDate = data[0].wedding_date.toString().slice(0, 15)
+        } else {
+          wedDate = null
+        }
 
         for (let i = 0; i < data.length; i++) {
           delete data[i].created_at

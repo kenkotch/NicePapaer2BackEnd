@@ -30,7 +30,9 @@
       <br><br>
     </div>
     <div class="row">
-      <p>Wedding Date:</p> <%= data.wedding_date.toString().slice(0, 15) %>
+      <% if (data.wedding_date !== null) { %>
+        <p>Wedding Date:</p> <%= data.wedding_date.toString().slice(0, 15) %>
+      <% } %>
     </div>
       <br>
       <br>
