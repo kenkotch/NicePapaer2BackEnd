@@ -123,43 +123,42 @@ const role1Render = (id, req, res, next) => {
 
 // role 2 render
 const role2Render = (id, req, res, next) => {
-    knex('account')
-      .select('first_name_1', 'first_name_2', 'wedding_date', 'template.template_name', 'schedule.*')
-      .where('account.id', id)
-      .orderBy('time')
-      .innerJoin('schedule', 'schedule.account_id', 'account.id')
-      .innerJoin('template', 'template.id', 'account.template_id')
-      .then((data) => {
-        fName1 = data[0].first_name_1
-        fName2 = data[0].first_name_2
+  knex('account')
+    .select('first_name_1', 'first_name_2', 'wedding_date', 'template.template_name', 'schedule.*')
+    .where('account.id', id)
+    .orderBy('time')
+    .innerJoin('schedule', 'schedule.account_id', 'account.id')
+    .innerJoin('template', 'template.id', 'account.template_id')
+    .then((data) => {
+      fName1 = data[0].first_name_1
+      fName2 = data[0].first_name_2
 
-        if (data[0].wedding_date){
-          wedDate = data[0].wedding_date.toString().slice(0, 15)
-        } else {
-          wedDate = null
+      if (data[0].wedding_date){
+        wedDate = data[0].wedding_date.toString().slice(0, 15)
+      } else {
+        wedDate = null
+      }
+
+      for (let i = 0; i < data.length; i++) {
+        delete data[i].created_at
+        delete data[i].updated_at
+      }
+
+      console.log('wedDate type: ', typeof wedDate)
+      console.log('wedDate:', wedDate)
+      res.render(
+        'schedule', {
+          title: `Welcome to ${fName1} and ${fName2}'s wedding!`,
+          data,
+          role,
+          wedDate,
+          _layoutFile: 'layout.ejs'
         }
-
-        for (let i = 0; i < data.length; i++) {
-          delete data[i].created_at
-          delete data[i].updated_at
-        }
-
-        console.log('wedDate type: ', typeof wedDate)
-        console.log('wedDate:', wedDate)
-        res.render(
-          'schedule', {
-            title: `Welcome to ${fName1} and ${fName2}'s wedding!`,
-            data,
-            role,
-            wedDate,
-            _layoutFile: 'layout.ejs'
-          }
-        )
-      })
-      .catch((err) => {
-        next(err)
-      })
-  // }
+      )
+    })
+    .catch((err) => {
+      next(err)
+    })
 }
 
 // role 3 render
