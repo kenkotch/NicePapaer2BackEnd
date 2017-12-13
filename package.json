@@ -2,13 +2,12 @@
   "name": "NicePaper2BackEnd",
   "version": "2.0.0",
   "private": true,
-  "main": "index.js",
-  "repository": "https://github.com/kenkotch/NicePaper2BackEnd.git",
-  "author": "Ken Kotch <hello@ken.uno> Adam Neef <adneef@gmail.com>",
-  "license": "MIT",
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "dev": "nodemon ./bin/www",
+    "knex": "knex",
+    "heroku-postbuild": "knex migrate:rollback; knex migrate:latest; knex seed:run;",
+    "nodemon": "node app.js"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",
@@ -28,5 +27,8 @@
     "morgan": "~1.9.0",
     "pg": "^7.4.0",
     "serve-favicon": "~2.4.5"
+  },
+  "engines": {
+    "node": "v9.2.1"
   }
 }
