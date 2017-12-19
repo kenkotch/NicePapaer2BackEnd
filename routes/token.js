@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken')
 const secret = process.env.JWT_KEY
 
 router.post('/', (req, res, next) => {
-  // console.log('token')
   const {
     email,
     password
@@ -63,7 +62,7 @@ router.post('/', (req, res, next) => {
         accountId: data.account_id || data.id,
         id: data.id
       }, secret)
-
+      console.log('token:', token)
       res.cookie(
         'token', token,
         { httpOnly: true }

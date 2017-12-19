@@ -10,7 +10,10 @@ let role
 
 // RENDERS EVERYTHING FROM THIS OWNER'S SPECIFIC PROFILE
 const auth = (req, res, next) => {
+  console.log('\n\n\nreq.body.email in auth:', req.body.email)
+  console.log('\n\n\nreq.cookies.token in auth:', req.cookies.token)
   jwt.verify(req.cookies.token, secret, (err, payload) => {
+    console.log('\n\n\nerr?', err)
     if (err) {
       res.status(401)
       return res.send('Not Authorized')
@@ -130,6 +133,7 @@ router.get('/:id/editprofile', (req, res) => {
 
 // U
 router.patch('/:id/editprofile', auth, checkRole, (req, res, next) => {
+  console.log('body coming in is?', req.body)
   const id = Number(req.params.id)
   const {
     username,
